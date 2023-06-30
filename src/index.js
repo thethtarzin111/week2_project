@@ -15,4 +15,13 @@ submitButton.addEventListener("click", () => {
   if (adminY.checked) {
     column4.innerHTML = "X";
   }
+  console.log(table.rows.length);
+});
+
+let emptyTableButton = document.getElementById("empty-table");
+emptyTableButton.addEventListener("click", () => {
+  let table = document.getElementById("data-table");
+  for (let i = 0; i <= table.rows.length + 1; i++) {
+    table.deleteRow(1);
+  }
 });
