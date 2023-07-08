@@ -1,48 +1,57 @@
+/*if (document.readyState !== "loading") {
+  console.log("document is already ready, just execute code here");
+} else {
+  document.addEventListener("DOMContentLoaded", function () {*/
 const submitButton = document.getElementById("submit-data");
-let y = 0;
 submitButton.addEventListener("click", () => {
+  let y = 0;
   let table = document.getElementById("data-table");
-
   let targetTDs = table.querySelectorAll("tr > td:first-child");
   let columns = table.querySelectorAll("tr>td");
-  for (let i = 1; i < targetTDs.length + 1; i++) {
-    let td = targetTDs[i];
-    //console.log(td.innerHTML);
 
-    if (td.innerHTML === document.getElementById("input-username").value) {
-      //console.log("The same username");
-      columns[5 + y].innerHTML = document.getElementById("input-email").value;
-      columns[6 + y].innerHTML = document.getElementById("input-address").value;
-      if (document.getElementById("input-admin").checked) {
-        columns[7 + y].innerHTML = "X";
+  document.addEventListener("DOMContentLoaded", function () {
+    for (let i = 1; i < targetTDs.length + 1; i++) {
+      let td = targetTDs[i];
+      console.log(td.innerHTML);
+      if (document.getElementById("input-username").value === td.innerHTML) {
+        //console.log("The same username");
+        columns[5 + y].innerHTML = document.getElementById("input-email").value;
+        columns[6 + y].innerHTML = document.getElementById(
+          "input-address"
+        ).value;
+        if (document.getElementById("input-admin").checked) {
+          columns[7 + y].innerHTML = "X";
+        } else {
+          columns[7 + y].innerHTML = "-";
+        }
+
+        break;
       } else {
-        columns[7 + y].innerHTML = "-";
-      }
+        y = y + 4;
+        if (
+          i > targetTDs.length &&
+          td.innerHTML !== document.getElementById("input-username").value
+        ) {
+          let row = table.insertRow(4);
+          let adminY = document.getElementById("input-admin");
+          let column1 = row.insertCell(0);
+          let column2 = row.insertCell(1);
+          let column3 = row.insertCell(2);
+          let column4 = row.insertCell(3);
+          column1.innerHTML = document.getElementById("input-username").value;
+          column2.innerHTML = document.getElementById("input-email").value;
+          column3.innerHTML = document.getElementById("input-address").value;
 
-      break;
-    } else {
-      y = y + 4;
-      if (
-        i > targetTDs.length &&
-        td.innerHTML !== document.getElementById("input-username").value
-      ) {
-        let row = table.insertRow(4);
-        let adminY = document.getElementById("input-admin");
-        let column1 = row.insertCell(0);
-        let column2 = row.insertCell(1);
-        let column3 = row.insertCell(2);
-        let column4 = row.insertCell(3);
-        column1.innerHTML = document.getElementById("input-username").value;
-        column2.innerHTML = document.getElementById("input-email").value;
-        column3.innerHTML = document.getElementById("input-address").value;
-
-        if (adminY.checked) {
-          column4.innerHTML = "X";
+          if (adminY.checked) {
+            column4.innerHTML = "X";
+          }
         }
       }
     }
-  }
+  });
 });
+//});
+//}
 
 let emptyTableButton = document.getElementById("empty-table");
 emptyTableButton.addEventListener("click", () => {
