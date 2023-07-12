@@ -76,11 +76,15 @@ firstColData.addEventListener("click", () => {
   }
 });
 
-const uploadButton = document.getElementById("input-image");
+const uploadButton = document.getElementById("upload-photo");
 uploadButton.addEventListener("click", () => {
   let table = document.getElementById("data-table");
   let row = table.insertRow(1);
-  let column5 = row.insertCell(0);
+  let column1 = row.insertCell(0);
+  let column2 = row.insertCell(1);
+  let column3 = row.insertCell(2);
+  let column4 = row.insertCell(3);
+  let column5 = row.insertCell(4);
 
   let file = document.getElementsByName("input-image")[0].files[0];
   let src = URL.createObjectURL(file);
